@@ -51,6 +51,7 @@ public class Ex01Controller {
 		
 		
 		return fruitMap;
+		// 이렇게 하면 그냥 JSON 문자열로 웹에 출력된다
 	}
 	
 	
