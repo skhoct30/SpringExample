@@ -1,7 +1,5 @@
 package com.skhoct30.spring.ex.mybatis.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +21,27 @@ public class ReviewService {
 		
 		return review;
 	}
+	
+	// sellerId, 메뉴, ㅏ작성자, 별점, 리뷰 를 전달받아 저장하는 기능
+	
+	public int addReview(int storeId
+			, String menu
+			, String userName
+			, double point
+			, String review) {
+		
+		//여기선 행의 개수라서 int count 라고 함
+		int count = reviewRepository.insertReview(storeId, menu, userName, point, review);
+		return count;
+	}
+	
+	// Review  객체를 통해 리뷰 정보를 저장하는 기능
+	public int addReviewByObject(Review review) {
+		int count = reviewRepository.insertReviewByObject(review);
+		
+		return count;
+	}
+	
+	
 	
 }

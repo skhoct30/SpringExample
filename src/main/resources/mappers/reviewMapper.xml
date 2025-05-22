@@ -21,5 +21,51 @@
 		WHERE
 			`id` = #{id}
 	</select>
+	
+	<!-- insert 태그에는 resultType 은 쓸 수 없다.  -->
+	<insert id="insertReview" parameterType="map">
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+		)
+		VALUE
+		(
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+		)
+	</insert>
+	
+	
+	<!--  아래 VAlUE 에는 멤버변수 이름을 적는거임 >> domain>Review -->
+	<insert id="insertReviewByObject"
+	parameterType="com.skhoct30.spring.ex.mybatis.domain.Review">
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+		)
+		VALUE
+		(
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+		)	
+	
+	</insert>
+	
  
  </mapper>
