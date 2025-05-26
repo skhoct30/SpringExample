@@ -22,4 +22,17 @@ public class UserService {
 		return user;
 		
 	}
+	
+	
+	// create
+	// 정보 전달받고 사용하는 기능
+	
+	public int addUser(User user) {
+		
+		int count = userRepository.insertUser(user);
+		
+		return count;
+		
+		
+	}
 }
