@@ -19,5 +19,56 @@
 	<h4 th:text="|Date : ${#dates.format(date, 'yyyy년 M월 d일 H시 m분 s초')}|"></h4> <!-- 전체적으로 표현 가능 -->
 	<h4 th:text="|localDate : ${#temporals.format(localDate, 'yyyy년 MM월 dd일')}|"></h4> <!-- 날짜 만 표현 가능 -->
 	<h4 th:text="|localDateTime : ${#temporals.format(localDateTime, 'yyyy/MM/dd hh:mm:ss')}|"></h4>
+	
+	
+	<h3>2. 문자열 메소드</h3>
+	
+	<div th:with="string1 = 'No pain, No gain'">
+		<h4 th:text="|문자열 길이 : ${#strings.length(string1)}|"></h4>
+		<h4 th:text="|No가 존재하는 지 : ${#strings.contains(string1, 'No')}|"></h4> <!-- 조건에 활용할 수 있디 -->
+		
+		
+		<h4>특정 문자열로 시작, 끝나는지 확인</h4>
+		<h4 th:if="${#strings.startsWith(string1, 'No')}">No로 시작한다</h4>
+		<h4 th:if="${#strings.endsWith(string1, 'gain')}">gain으로 끝난다</h4> <!--  이 조건들은 true, false 로 인식되서 true 면 조건들이 걸려있는 문자열이 보여진다 -->
+		
+		
+	</div>
+	
+	<div th:with="string2 = 'I Love chicken'">
+		
+		<h4>문자열 치환</h4>
+		<h4 th:text="${#strings.replace(string2, 'chicken', 'pizza')}"></h4>
+		<h4 th:text="${string2}"></h4>
+	
+	
+		<h4>문자열 자르기</h4>
+		<h4 th:text="${#strings.substring(string2, 2, 6)}"></h4>
+		
+		
+		<h4>문자열 쪼개기</h4>
+		<h4 th:text="${#strings.arraySplit(string2, ' ')[0]}"></h4> <!--  메소드는 리턴된 값 그 자체라서 뒤에 인덱스를 넣어주면됨 -->
+		<h4 th:text="${#strings.arraySplit(string2, ' ')[1]}"></h4>
+		<h4 th:text="${#strings.arraySplit(string2, ' ')[2]}"></h4>
+	
+	
+	</div>
+	
+	
+	<div th:with="string3 = '               hello            '">
+	
+		<h4>공백처리</h4>
+		
+		<h4 th:text="${string3}"></h4>
+		<textarea th:text="${string3}"></textarea> <!-- 그냥 html 출력에는 공백이 출력되지 않지면  textarea 에서는 공백출력이 되니까 이럴 때 사용한다 -->
+		<textarea th:text="${#strings.trim(string3)}"></textarea>
+	
+	
+	
+	</div>
+	
+	
+	
+	
 </body>
 </html>
