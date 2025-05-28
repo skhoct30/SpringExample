@@ -1,7 +1,12 @@
 package com.skhoct30.spring.ex.thymeleaf;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +34,53 @@ public class ThymeleafController {
 		
 		model.addAttribute("fruitList", fruitList);
 		
+		List<Map<String, Object>> userList = new ArrayList<>();
+		
+		// Map
+		// 이름 , 나이 , 취미
+		// "name":"김인규", "age":29, "hobby":"독서"
+		Map<String, Object> userMap = new HashMap<>();
+		userMap.put("name", "김인규");
+		userMap.put("age", 29);
+		userMap.put("hobby", "독서");
+		
+		userList.add(userMap); // 새로만든 List 에 Map 에 put 한 내용들을 넣어준다
+		
+		
+		
+		userMap = new HashMap<>();	
+		userMap.put("name", "바다");
+		userMap.put("age", 6);
+		userMap.put("hobby", "사냥하기");
+		
+		userList.add(userMap);
+		
+		//근데 ㅇ ㅕ기서 모델에 값읋 넣어야 html 에 가서 쓸 수 있다
+		model.addAttribute("userList", userList);
+		
+		
+		
 		return "thymeleaf/ex02";	
+	}
+	
+	@GetMapping("/ex03")
+	public String ex03(Model model) {
+		
+		// 날짜 혹은 날짜시간 다루는 객체
+		
+		Date date = new Date();
+		
+		LocalDate localDate = LocalDate.now();
+		
+		LocalDateTime localDateTime = LocalDateTime.now(); // 현재 날짜 시간
+		
+		
+		model.addAttribute("date", date);
+		model.addAttribute("localDate", localDate);
+		model.addAttribute("localDateTime", localDateTime);
+		
+		
+		return "thymeleaf/ex03";
 	}
 	
 }

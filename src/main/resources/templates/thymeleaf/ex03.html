@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>날짜 문자열 다루기</title>
+</head>
+<body>
+
+	<h2>날짜, 문자열 다루기</h2>
+	
+	<h3>1. 날짜 시간 객체</h3>
+	
+	
+	<h4 th:text="|Date : ${date}|"></h4>
+	<h4 th:text="|localDate : ${localDate}|"></h4>
+	<h4 th:text="|localDateTime : ${localDateTime}|"></h4>
+	
+	<!-- # 으로 시작하는건 메소드 -->
+	<h4 th:text="|Date : ${#dates.format(date, 'yyyy년 M월 d일 H시 m분 s초')}|"></h4> <!-- 전체적으로 표현 가능 -->
+	<h4 th:text="|localDate : ${#temporals.format(localDate, 'yyyy년 MM월 dd일')}|"></h4> <!-- 날짜 만 표현 가능 -->
+	<h4 th:text="|localDateTime : ${#temporals.format(localDateTime, 'yyyy/MM/dd hh:mm:ss')}|"></h4>
+</body>
+</html>
