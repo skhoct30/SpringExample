@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사용자 추가</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+
+	<h2>사용자 추가</h2>
+	<label>이름</label> <input type="text" id="nameInput"><br>
+	<label>생년월일</label> <input type="text" id="birthdayInput"><br>
+	<label>이메일</label> <input type="text" id="emailInput"><br>
+	<textarea rows="5" cols="50" id="introduceInput"></textarea> <br>
+	<button type="button" id="addBtn">추가</button>
+
+	
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		$("#addBtn").on("click", function() {
+			
+			let name = $("#nameInput").val();
+			let birthday = $("#birthdayInput").val();
+			let email = $("#emailInput").val();
+			let introduce = $("#introduceInput").val();
+			
+			// alert(name + " " + birthday + " " + email + " " + introduce);
+			// 얘는 확인단계. 아직 db 에 추가 안했음.
+			
+			// 근데 사용자들이 제대로 썻는지 검증하는
+			// 유효성 검사 (Validation)
+			
+			// 1. 입력을 하지 않는 것을 걸러내자.
+			if(name == "") {
+				alert("이름을 입력하세요!");
+				return;
+			}
+			
+			if(birthday == "") {
+				alert("생년월일을 입력하세요!");
+				return;
+			}
+			
+			if(email == "") {
+				alert("이메일을 입력하세요!");
+				return;
+			}
+			
+			if(introduce == "") {
+				alert("자기소개를 입력하세요!");
+				return;
+			}
+			
+			
+			 $.ajax({
+				type:"post"
+				, url:"/ajax/user/create"
+				, data:{"name":name, "birthday":birthday, "email":email, "introduce":introduce}
+			 	, success:function(response) {
+					// 성공 {"result":"success"}
+					// 실패 {"result":"fail"}
+					if(response.result == "success") {
+						alert("추가 성공.!"); 
+					} else 
+						alert("사용자 추가 실패!");
+					}
+			 	, error:function() {
+			 		alert("사용자 추가 에러!");
+			 	}
+				 
+				 
+			 });
+			
+			
+			
+		});
+		
+	
+	
+	
+	
+	</script>
+
+
+
+
+</body>
+</html>

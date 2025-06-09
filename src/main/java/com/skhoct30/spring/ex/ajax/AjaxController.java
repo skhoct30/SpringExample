@@ -18,10 +18,13 @@ public class AjaxController {
 		return "ajax/ex01";
 	}
 	
+	
+	
+	
 	// response에 데이터가 담기는 페이지
 	// API <-> View(html)
-	
-	// 이름과 생년월일을 전달 받고 이름과 나이를 응답으로 전달 한다.
+	// 응답을 데이터만 담는다(json) < - > 응답을 html 화면으로 받는다.
+	// 이름과 생년월일을 전달 받고 이름과 나이를 응답으로 전달 한다.ㄷ
 	// 응답에 데이터(json)만 포함
 	@ResponseBody
 	@GetMapping("/ajax/person")
