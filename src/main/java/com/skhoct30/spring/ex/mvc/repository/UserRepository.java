@@ -12,4 +12,10 @@ public interface UserRepository {
 	public User selectLastUser();
 	
 	public int insertUser(User user);
+	
+	// 전달 받은 email 이 포험된 행의 개수 조회
+	
+	public int selectCountByEmail(@Param("email") String email);
+	
+	
 }
