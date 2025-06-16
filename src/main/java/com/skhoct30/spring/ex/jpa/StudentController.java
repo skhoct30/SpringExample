@@ -29,10 +29,35 @@ public class StudentController {
 	}
 	
 	// 수정기능
+	// api에 넣어야하니 똑같이
+	@ResponseBody
 	@GetMapping("/update")
-	public  updateStudent() {
-		// id 가 3인 학생 장래 희망을 강사로 변경
+	public Student updateStudent() {
+		// id 가 2인 학생 장래 희망을 강사로 변경
+		Student student = studentService.updateStudent(2, "강사");
+		
+		return student;
 	}
+	
+	
+	
+	// 삭제기능
+	@ResponseBody
+	@GetMapping("/delete")
+	public String deleteStudent() {
+		// id가 2인 학생 정보
+		
+		studentService.deleteStudent(2);
+		
+		return "삭제성공";
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

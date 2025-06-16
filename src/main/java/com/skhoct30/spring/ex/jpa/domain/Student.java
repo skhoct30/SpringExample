@@ -16,8 +16,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
-
-@Builder
+//       빌더에 속성추가
+@Builder(toBuilder=true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
