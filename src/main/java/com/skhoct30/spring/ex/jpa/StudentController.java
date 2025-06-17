@@ -1,5 +1,8 @@
 package com.skhoct30.spring.ex.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skhoct30.spring.ex.jpa.domain.Student;
+import com.skhoct30.spring.ex.jpa.repository.StudentRepository;
 import com.skhoct30.spring.ex.jpa.service.StudentService;
 
 @Controller
@@ -15,6 +19,13 @@ public class StudentController {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	
+	// !!!!! 경고 !!!!!
+	// 절대 컨트롤러에서 레파지토리 객사 사용 불가!!
+	// 지금은 예제 진행의 편의를 위해서 추가하는 것임!!!
+	@Autowired
+	private StudentRepository studentRepository;
 	
 	
 	// 저장기능
@@ -52,6 +63,46 @@ public class StudentController {
 		return "삭제성공";
 		
 	}
+	
+	
+	
+	
+	@ResponseBody
+	@GetMapping("/find")
+	public List<Student> findStudent() {
+		
+		List<Student> studentList = null;
+		
+		// 모든 학생의 정보를 조회
+//		studentList = studentRepository.findAll();
+		
+		// 모든행 
+//		studentList = studentRepository.findAllByOrderByIdDesc();
+		
+		// id 기반으로 내림차순 2개만 조회
+//		studentList = studentRepository.findTop2OrderByIdDesc();
+		
+		// 같은 이름 조회
+//		studentList = studentRepository.findByName("김인규");
+		
+		
+//		List<String> nameList = new ArrayList<>();
+//		nameList.add("유재석");
+//		nameList.add("김인규");	
+//		studentList = studentRepository.findByNameIn(nameList);
+
+		
+//		studentList = studentRepository.findByEmailContaining("gmail");
+
+		
+		
+		studentList = studentRepository.selectByQuery("강사");
+		
+		
+		return studentList;
+	}
+	
+	
 	
 	
 	
